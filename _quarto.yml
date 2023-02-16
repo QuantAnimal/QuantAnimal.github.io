@@ -1,0 +1,37 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Quantification of Resilience Farm Animals"
+  reader-mode: true
+  sidebar:
+    style: "docked"
+    background: dark
+    search: true
+    contents:
+      - section: Examples
+        contents:
+        - href: examples/post_treatment_of_data/Model_MT.html#case-study-1.dynamic-semi-mechanistic-model
+          text: Dynamic semi-mechanistic model
+        - href: examples/post_treatment_of_data/Model_MT.html#case-study-2.-differential-smoothing-model
+          text: Differential smoothing model
+        - href: examples/switching_model/switching_model.html
+          text: Switching dynamic linear model
+        - href: examples/observer/gobserver_RMT.html
+          text: State observer
+    tools:
+      - icon: twitter
+        href: https://twitter.com/MasooTaghipoor
+      - icon: github
+        href: https://github.com/QuantAnimal/QuantAnimal.github.io
+
+
+format:
+  html:
+    theme: flatly
+    css: styles.css
+    toc: true
+
+
+

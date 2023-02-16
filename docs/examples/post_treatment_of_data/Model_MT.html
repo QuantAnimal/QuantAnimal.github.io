@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Masoomeh Taghipoor Masoomeh.Taghipoor@inrae.fr , Matti Pastel, Rafael Munoz-Tamayo">
+
+<title>Quantification of Resilience Farm Animals - Case studies for post treatment of data</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Case studies for post treatment of data</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">Quantification of Resilience Farm Animals</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://twitter.com/MasooTaghipoor" title="" class="sidebar-tool px-1"><i class="bi bi-twitter"></i></a>
+    <a href="https://github.com/QuantAnimal/QuantAnimal.github.io" title="" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-reader-toggle sidebar-tool" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Examples</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/post_treatment_of_data/Model_MT.html#case-study-1.dynamic-semi-mechanistic-model" class="sidebar-item-text sidebar-link">Dynamic semi-mechanistic model</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/post_treatment_of_data/Model_MT.html#case-study-2.-differential-smoothing-model" class="sidebar-item-text sidebar-link">Differential smoothing model</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/switching_model/switching_model.html" class="sidebar-item-text sidebar-link">Switching dynamic linear model</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/observer/gobserver_RMT.html" class="sidebar-item-text sidebar-link">State observer</a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#case-study-1.dynamic-semi-mechanistic-model" id="toc-case-study-1.dynamic-semi-mechanistic-model" class="nav-link active" data-scroll-target="#case-study-1.dynamic-semi-mechanistic-model">Case study 1.Dynamic semi-mechanistic model</a></li>
+  <li><a href="#case-study-2.-differential-smoothing-model" id="toc-case-study-2.-differential-smoothing-model" class="nav-link" data-scroll-target="#case-study-2.-differential-smoothing-model">Case study 2. Differential smoothing model</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">Case studies for post treatment of data</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Masoomeh Taghipoor <a href="mailto:Masoomeh.Taghipoor@inrae.fr" class="email">Masoomeh.Taghipoor@inrae.fr</a> , Matti Pastel, Rafael Munoz-Tamayo </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="case-study-1.dynamic-semi-mechanistic-model" class="level3">
+<h3 class="anchored" data-anchor-id="case-study-1.dynamic-semi-mechanistic-model">Case study 1.Dynamic semi-mechanistic model</h3>
+<p>The objective of this example is to evaluate the animal’s capacity of response when faced with the two perturbations.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a> knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">message =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"DataPert.Rdata"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  y<span class="ot">=</span><span class="cf">function</span>(t){ <span class="co">#Ideal trajectory</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    yl<span class="ot">=</span>ymax<span class="sc">-</span>ymax<span class="sc">*</span><span class="fu">exp</span>(<span class="fl">0.1</span><span class="sc">*</span>(<span class="sc">-</span>t))</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(yl)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>ymax<span class="ot">=</span><span class="dv">6</span> <span class="co">#plateau</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>tspan<span class="ot">=</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">130</span>,<span class="dv">1</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(tspan,<span class="fu">y</span>(tspan), <span class="at">type=</span><span class="st">"l"</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(tspan,data<span class="sc">$</span>obs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Model_MT_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>We used the following ODE system to describe the influence of these two perturbations on the performance.</p>
+<p><span class="math display">\[
+\frac{d\alpha_j}{dt}=-k_{1j}\alpha_j \mathbb{1}_j(t)+k_{2j}(1-\alpha_j)(1-\mathbb{1}_j(t));\\
+\alpha_j(t^b)=1;  \\
+\]</span> Where <span class="math inline">\(k_{1j}\)</span> and <span class="math inline">\(k_{2j}\)</span> are model parameters and characterize the animal’s response to perturbation j in term of loss of the performance and recovery capacity, respectively. <span class="math inline">\(\mathbb{1}_i(t))\)</span> the identity function which is one during the perturbation interval and 0, elsewhere. The value <span class="math inline">\(\alpha_b^j\)</span> stands for the initial value of the function <span class="math inline">\(\alpha_j\)</span>. Therefore, function <span class="math inline">\(\alpha_j\)</span> is one in non-perturbed conditions and less than one elsewhere. Then the trajectory of animal performance <span class="math inline">\(y(t)\)</span> during n perturbations can be described as</p>
+<p><span class="math display">\[
+y(t)=\Sigma_{j=1}^n \alpha_j(t).f(P,t), \\
+y(t_0)=y_0
+\]</span> Where f(P,t) describes the theoretical function of animal performance, P is the set of model parameters describing the characteristics of the theoretical trajectory, t is time interval of experiment.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a> <span class="co">#ODE funccion of perturbations</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  dalpha <span class="ot">&lt;-</span> <span class="cf">function</span>(t, state, parameters) {</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">with</span>(<span class="fu">as.list</span>(<span class="fu">c</span>(state, parameters)), {</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>      tb1<span class="ot">=</span><span class="dv">10</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>      te1<span class="ot">=</span><span class="dv">25</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>      tb2<span class="ot">=</span><span class="dv">75</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>      te2<span class="ot">=</span><span class="dv">85</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>      <span class="co"># rate of change</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>      da1<span class="ot">=</span>k11<span class="sc">*</span>(<span class="sc">-</span>a1)<span class="sc">*</span>(t<span class="sc">&lt;</span>te1 <span class="sc">&amp;</span>t<span class="sc">&gt;</span>tb1)<span class="sc">+</span> k21<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>a1)<span class="sc">*</span>(t<span class="sc">&gt;</span>te1<span class="sc">&amp;</span>t<span class="sc">&lt;</span>tb2)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>      da2<span class="ot">=</span>k12<span class="sc">*</span>(<span class="sc">-</span>a2)<span class="sc">*</span>(t<span class="sc">&lt;</span>te2 <span class="sc">&amp;</span>t<span class="sc">&gt;</span>tb2)<span class="sc">+</span> k22<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>a2)<span class="sc">*</span>(t<span class="sc">&gt;</span>te2)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>          <span class="co"># return the result</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(<span class="fu">c</span>(da1,da2))</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(deSolve)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    state <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">a1 =</span> <span class="dv">1</span>,<span class="at">a2=</span><span class="dv">1</span>) <span class="co">#init var</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    parameters <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">k11 =</span> .<span class="dv">05</span>, <span class="at">k12 =</span> .<span class="dv">1</span>, <span class="at">k21=</span><span class="fl">0.15</span>,<span class="at">k22=</span><span class="fl">0.05</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    alpha<span class="ot">=</span> <span class="fu">ode</span>(<span class="at">y =</span> state, <span class="at">times =</span> tspan, <span class="at">func =</span> dalpha, <span class="at">parms =</span> parameters) <span class="co">#alpha1 et 2: 1st and 2nd pertubations</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>alpha<span class="ot">=</span><span class="fu">as.data.frame</span>(alpha)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a> data.test<span class="ot">=</span><span class="fu">as.data.frame</span>(<span class="fu">cbind</span>(alpha,<span class="fu">y</span>(tspan),data<span class="sc">$</span>obs,(alpha[<span class="dv">2</span>]<span class="sc">+</span>alpha[<span class="dv">3</span>])<span class="sc">/</span><span class="dv">2</span><span class="sc">*</span><span class="fu">y</span>(tspan)))</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a> <span class="fu">colnames</span>(data.test)<span class="ot">=</span><span class="fu">c</span>(<span class="st">"time"</span>,<span class="st">"alpha1"</span>,<span class="st">"alpha2"</span>,<span class="st">"perf"</span>,<span class="st">"obs"</span>,<span class="st">"pert"</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># alpha1 et 2: 1st and 2nd pertubations</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># perf: animal ideal trajectory of performance</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># pert: actual perturbed performance</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a> <span class="fu">head</span>(data.test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  time alpha1 alpha2      perf         obs      pert
+1    0      1      1 0.0000000 -0.07053181 0.0000000
+2    1      1      1 0.5709755  0.28091643 0.5709755
+3    2      1      1 1.0876155  0.79499282 1.0876155
+4    3      1      1 1.5550907  1.86957724 1.5550907
+5    4      1      1 1.9780797  1.76087134 1.9780797
+6    5      1      1 2.3608160  2.36518639 2.3608160</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>col<span class="ot">=</span><span class="fu">c</span>(<span class="st">"Theoretical Performance"</span>,<span class="st">"Estimated response"</span>,<span class="st">"Observation"</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> data.test, <span class="fu">aes</span>(<span class="at">x =</span> tspan)) <span class="sc">+</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>( <span class="at">y =</span> perf, <span class="at">color =</span> col[<span class="dv">1</span>]))<span class="sc">+</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>( <span class="at">y =</span> pert, <span class="at">color =</span> col[<span class="dv">2</span>]))<span class="sc">+</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>( <span class="at">y =</span> obs, <span class="at">color =</span> col[<span class="dv">3</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Model_MT_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The fihure above shows a hypothetic example of animal response to two different perturbations. Two consecutive perturbations occurred at <span class="math inline">\(t_1^b=10\)</span> and <span class="math inline">\(t_2^b=75\)</span>, and were over at <span class="math inline">\(t_1^s=25\)</span> and <span class="math inline">\(t_2^s=85\)</span> days of age. Parameters of animal’s response <span class="math inline">\((k_{1j},k_{2j})\)</span> are <span class="math inline">\((0.05,0.15)\)</span> for the first perturbation and <span class="math inline">\((0.1,0.05)\)</span> for the second. One can easily realize that the animal had a better capacity to resist faced with the first perturbation, while the capacity of recovery was better in the second perturbation. Moreover, compared to the second perturbation (10 days), the animal took more time to start the recovery period in the first perturbation (15 days).</p>
+</section>
+<section id="case-study-2.-differential-smoothing-model" class="level3">
+<h3 class="anchored" data-anchor-id="case-study-2.-differential-smoothing-model">Case study 2. Differential smoothing model</h3>
+<p>This example shows the use of a purely data-driven approach for the post treatment of performance data under perturbations. We present a hypothetic example, in which the expected performance is equal to 1, and the deviations from this value could be considered as perturbations.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"fda"</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"graphics"</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"data_FDA.Rdata"</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(data<span class="sc">$</span>obs, <span class="at">file=</span><span class="st">"data_FDA"</span>, <span class="at">append =</span> <span class="cn">FALSE</span>, <span class="at">sep =</span> <span class="st">" "</span>, <span class="at">dec =</span> <span class="st">"."</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">row.names =</span> <span class="cn">TRUE</span>, <span class="at">col.names =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(data<span class="sc">$</span>time,data<span class="sc">$</span>obs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Model_MT_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Data were smoothed using B-Spline bases of order 5 with the roughness penalty <span class="math inline">\(\lambda=10^4\)</span> to estimate animal performance.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#FDA</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>tspan<span class="ot">=</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">130</span>,<span class="dv">1</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>order <span class="ot">=</span> <span class="dv">6</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>pen.what <span class="ot">=</span> <span class="dv">4</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>lambda <span class="ot">=</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">4</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>range <span class="ot">=</span> <span class="fu">c</span>(data<span class="sc">$</span>time[<span class="dv">1</span>],data<span class="sc">$</span>time[<span class="fu">length</span>(data<span class="sc">$</span>time)])</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>knot.vec <span class="ot">=</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="fu">length</span>(data<span class="sc">$</span>time),<span class="dv">2</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>break.vec <span class="ot">=</span> data<span class="sc">$</span>time[knot.vec]</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># B-spline regression</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    basis.func <span class="ot">=</span> <span class="fu">create.bspline.basis</span>(<span class="at">rangeval =</span> range, <span class="at">norder =</span> order, <span class="at">breaks =</span> break.vec)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    param.func <span class="ot">=</span> <span class="fu">fdPar</span>(<span class="at">fdobj =</span> basis.func, <span class="at">Lfdobj =</span> pen.what,<span class="at">lambda =</span> lambda)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    smooth.res <span class="ot">=</span> <span class="fu">smooth.basis</span>(<span class="at">argvals =</span> data<span class="sc">$</span>time,data<span class="sc">$</span>obs,param.func)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>res.fda <span class="ot">=</span> smooth.res<span class="sc">$</span>fd</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>eval.days <span class="ot">=</span>data<span class="sc">$</span>time</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    res.estim   <span class="ot">=</span> <span class="fu">eval.fd</span>(eval.days,res.fda)   <span class="co">#</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    vel.estim <span class="ot">=</span> <span class="fu">eval.fd</span>(eval.days,res.fda,<span class="dv">1</span>) <span class="co">#</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    acc.estim <span class="ot">=</span> <span class="fu">eval.fd</span>(eval.days,res.fda,<span class="dv">2</span>) <span class="co">#</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>res <span class="ot">=</span> res.estim</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>deriv<span class="ot">=</span>vel.estim</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>acc<span class="ot">=</span>acc.estim</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>   Vars<span class="ot">=</span><span class="fu">c</span>(<span class="st">"perturbed perfromance"</span>, <span class="st">"Observation"</span>,<span class="st">"Theoretical_perfomance"</span>)</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>  p1<span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> data, <span class="fu">aes</span>(<span class="at">x =</span> time)) <span class="sc">+</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>( <span class="at">y =</span> res, <span class="at">color =</span> Vars[<span class="dv">1</span>]))<span class="sc">+</span></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>( <span class="at">y =</span> obs, <span class="at">color =</span> Vars[<span class="dv">2</span>]))<span class="sc">+</span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>( <span class="at">y =</span> perf, <span class="at">color =</span> Vars[<span class="dv">3</span>]))</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>    var<span class="ot">=</span><span class="fu">c</span>(<span class="st">"1st derivative"</span>)</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>  p2<span class="ot">=</span>  <span class="fu">ggplot</span>(<span class="at">data =</span> data, <span class="fu">aes</span>(<span class="at">x =</span> time)) <span class="sc">+</span></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>( <span class="at">y =</span> vel.estim, <span class="at">color =</span> var[<span class="dv">1</span>])) <span class="sc">+</span></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>( <span class="at">y =</span> <span class="dv">0</span>))</span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_classic</span>())</span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a><span class="fu">update_geom_defaults</span>(<span class="st">"line"</span>, <span class="fu">list</span>(<span class="at">size =</span> <span class="fl">1.1</span>))</span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>gridExtra<span class="sc">::</span><span class="fu">grid.arrange</span>(p1, p2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Model_MT_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The upper graph shows the estimated function (black curve) against observation (dots). The lower graph shows the derivative of the estimated function. Zeros of derivatives are associated with maximums and minimums of the function. The blue line on the upper graph shows the theoretical performance of the animal, which is assumed to be 1.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

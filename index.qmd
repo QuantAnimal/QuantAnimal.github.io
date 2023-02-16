@@ -1,0 +1,15 @@
+---
+title: "Quantification of resilience in farm animals"
+---
+
+This is a supporting website for the paper "Quantification of resilience in farm animals" from Taghipoor et al.
+
+It hosts the following code examples to supplement the paper:
+
+- [Dynamic semi-mechanistic model](examples/post_treatment_of_data/Model_MT.html#case-study-1.dynamic-semi-mechanistic-model)
+
+- [Differential smoothing model](examples/post_treatment_of_data/Model_MT.html#case-study-2.-differential-smoothing-model)
+
+- [Using switching dynamic linear models for detecting perturbations](examples/switching_model/switching_model.html)
+
+- [Example of an state observer to estimate the perturbed component of the body weight trajectory](examples/observer/gobserver_RMT.html)
