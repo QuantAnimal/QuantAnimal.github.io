@@ -3,3 +3,5 @@ _site
 examples/**/*.png
 :Zone.Identifier
 
+
+/.quarto/

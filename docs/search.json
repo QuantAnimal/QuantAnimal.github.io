@@ -39,13 +39,13 @@
     "href": "index.html",
     "title": "Quantification of resilience in farm animals",
     "section": "",
-    "text": "This is a supporting website for the paper “Quantification of resilience in farm animals” from Taghipoor et al.\nIt hosts the following code examples to supplement the paper:\n\nDynamic semi-mechanistic model\nDifferential smoothing model\nUsing switching dynamic linear models for detecting perturbations\nExample of an state observer to estimate the perturbed component of the body weight trajectory"
+    "text": "This is a supporting website for the paper:\nQuantification of resilience in farm animals. Masoomeh Taghipoor, Matti Pastell, Olivier Martin, Hieu Nguyen Ba, Jaap van Milgen, Andrea Doesch Wilson, Christelle Loncke, Laurence Puillet, Nicolas C Friggens, & Rafael Muñoz-Tamayo. (2023). Zenodo. https://doi.org/10.5281/zenodo.7755959\nIt hosts the following code examples to supplement the paper:\n\nDynamic semi-mechanistic model\nDifferential smoothing model\nUsing switching dynamic linear models for detecting perturbations\nExample of an state observer to estimate the perturbed component of the body weight trajectory"
   },
   {
     "objectID": "Readme.html",
     "href": "Readme.html",
-    "title": "Quantification of resilience in farm animals",
+    "title": "Quantification of Resilience Farm Animals",
     "section": "",
-    "text": "This is a supporting website for the paper “Quantification of resilience in farm animals” from Taghipoor et al.\nIt hosts the code examples to supplement the paper, the code as Rmd notebooks, script and data are in the examples directory."
+    "text": "Quantification of resilience in farm animals\nThis is a supporting website for the paper “Quantification of resilience in farm animals” from Taghipoor et al. https://doi.org/10.5281/zenodo.7755959 The site is built using Quarto.\nIt hosts the code examples to supplement the paper, the code as Rmd notebooks, script and data are in the examples directory."
   }
 ]
