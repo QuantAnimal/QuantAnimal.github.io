@@ -1,5 +1,12 @@
 [
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Quantification of resilience in farm animals",
+    "section": "",
+    "text": "This is a supporting website for the paper:\nAnimal Board Invited Review: Quantification of resilience in farm animals. Masoomeh Taghipoor, Matti Pastell, Olivier Martin, Hieu Nguyen Ba, Jaap van Milgen, Andrea Doesch Wilson, Christelle Loncke, Laurence Puillet, Nicolas C Friggens, & Rafael Muñoz-Tamayo. Animal (2023), https://doi.org/10.1016/j.animal.2023.100925\nIt hosts the following code examples to supplement the paper:\n\nDynamic semi-mechanistic model\nDifferential smoothing model\nUsing switching dynamic linear models for detecting perturbations\nExample of an state observer to estimate the perturbed component of the body weight trajectory"
+  },
+  {
     "objectID": "examples/observer/gobserver_RMT.html",
     "href": "examples/observer/gobserver_RMT.html",
     "title": "Example of an state observer to estimate the perturbed component of the body weight trajectory",
@@ -18,7 +25,7 @@
     "href": "examples/switching_model/switching_model.html",
     "title": "Using switching dynamic linear models for detecting perturbations",
     "section": "",
-    "text": "We present an example on online estimation of perturbations of animal trajectory using a switching dynamic linear model. We use one dynamic model for the unperturbed state and a separate model for the perturbed state, and a discrete latent variable \\(s_t \\in {\\{unperturbed,perturbed\\}}\\) indicates which model is active at each time. By observing the data we see that in the unperturbed state the series has a constant mean and in the perturbed state there is clear change in the slope. This document is a supplement to paper “Quantification of resilience in farm animals” by Taghipoor et al.\nWe model the unperturbed state using a local level model (1st order polynomial) and the perturbed state using a local linear trend model (2nd order polynomial). In the local level model observations are modeled as having mean \\(\\mu_t\\) which is subject to random changes over time. The local level model is given by:\n\\[\ny_t = \\mu_t + v_t, \\quad v_t \\sim N(0, V) \\\\\n\\mu_t = \\mu_{t-1} + w_t, \\quad w_t \\sim N(0, W)\n\\]\nThe local linear trend model additionally expects the level \\(\\mu_t\\) to evolve with a slope of \\(\\beta_t\\). The local linear trend model is defined as:\n\\[\ny_t = \\mu_t + v_t, \\quad v_t \\sim N(0, V) \\\\\n\\mu_t = \\mu_{t-1} + \\beta_{t-1} + w_{t,1}, \\quad w_{t,1} \\sim N(0, \\sigma^2_\\mu) \\\\\n\\beta_t = \\beta_{t-1} + w_{t,2}, \\quad w_{t,1} \\sim N(0, \\sigma^2_\\beta)\n\\] We will use the dlm package to fit the models, the package provide model design function dlmModPoly for defining polynomial DLMs. We start by estimating the parameters of the models using maximum likelihood (see vignette(\"dlm\") for an introduction of the package explanation of estimation using dlmMLE).\nApply the filters and plot the results\nWe notice that the model provide too noisy estimates of the filtered state for our application, this could be because the data contains 2 separate regimes. We refit the model with higher values for V and W. In a real online application the model parameters are usually estimated on training data obtained from experiments or farm records. After refitting we are happy with estimates for this application.\nWe observe that local level model provides good fit for the data for first part of the series and that the estimates from the linear trend model are clearly noisier. However, when the value of observations drop sharply the linear trend model performs clearly better and the local level model is no longer able to track the observations. Next we’ll see how we can detect which model is more appropriate for each observation."
+    "text": "We present an example on online estimation of perturbations of animal trajectory using a switching dynamic linear model. We use one dynamic model for the unperturbed state and a separate model for the perturbed state, and a discrete latent variable \\(s_t \\in {\\{unperturbed,perturbed\\}}\\) indicates which model is active at each time. By observing the data we see that in the unperturbed state the series has a constant mean and in the perturbed state there is clear change in the slope. This document is a supplement to paper “Quantification of resilience in farm animals” by Taghipoor et al.\nWe model the unperturbed state using a local level model (1st order polynomial) and the perturbed state using a local linear trend model (2nd order polynomial). In the local level model observations are modeled as having mean \\(\\mu_t\\) which is subject to random changes over time. The local level model is given by:\nThe local linear trend model additionally expects the level \\(\\mu_t\\) to evolve with a slope of \\(\\beta_t\\). The local linear trend model is defined as:\nWe will use the dlm package to fit the models, the package provide model design function dlmModPoly for defining polynomial DLMs. We start by estimating the parameters of the models using maximum likelihood (see vignette(\"dlm\") for an introduction of the package explanation of estimation using dlmMLE).\nApply the filters and plot the results\nWe notice that the model provide too noisy estimates of the filtered state for our application, this could be because the data contains 2 separate regimes. We refit the model with higher values for V and W. In a real online application the model parameters are usually estimated on training data obtained from experiments or farm records. After refitting we are happy with estimates for this application.\nWe observe that local level model provides good fit for the data for first part of the series and that the estimates from the linear trend model are clearly noisier. However, when the value of observations drop sharply the linear trend model performs clearly better and the local level model is no longer able to track the observations. Next we’ll see how we can detect which model is more appropriate for each observation."
   },
   {
     "objectID": "examples/switching_model/switching_model.html#switching-model",
@@ -33,19 +40,5 @@
     "title": "Using switching dynamic linear models for detecting perturbations",
     "section": "References",
     "text": "References\nGiovanni Petris (2010). An R Package for Dynamic Linear Models. Journal of Statistical Software, 36(12), 1-16. URL: https://www.jstatsoft.org/v36/i12/.\nPetris, Petrone, and Campagnoli. (2009). Dynamic Linear Models with R. https://link.springer.com/book/10.1007/b135794\nWest, M. & Harrison J. (1997) Bayesian Forecasting and Dynamic Models. https://link.springer.com/book/10.1007/b98971"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Quantification of resilience in farm animals",
-    "section": "",
-    "text": "This is a supporting website for the paper:\nQuantification of resilience in farm animals. Masoomeh Taghipoor, Matti Pastell, Olivier Martin, Hieu Nguyen Ba, Jaap van Milgen, Andrea Doesch Wilson, Christelle Loncke, Laurence Puillet, Nicolas C Friggens, & Rafael Muñoz-Tamayo. (2023). Zenodo. https://doi.org/10.5281/zenodo.7755959\nIt hosts the following code examples to supplement the paper:\n\nDynamic semi-mechanistic model\nDifferential smoothing model\nUsing switching dynamic linear models for detecting perturbations\nExample of an state observer to estimate the perturbed component of the body weight trajectory"
-  },
-  {
-    "objectID": "Readme.html",
-    "href": "Readme.html",
-    "title": "Quantification of Resilience Farm Animals",
-    "section": "",
-    "text": "Quantification of resilience in farm animals\nThis is a supporting website for the paper “Quantification of resilience in farm animals” from Taghipoor et al. https://doi.org/10.5281/zenodo.7755959 The site is built using Quarto.\nIt hosts the code examples to supplement the paper, the code as Rmd notebooks, script and data are in the examples directory."
   }
 ]

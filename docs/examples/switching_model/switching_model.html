@@ -248,16 +248,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>We model the unperturbed state using a local level model (1st order polynomial) and the perturbed state using a local linear trend model (2nd order polynomial). In the local level model observations are modeled as having mean <span class="math inline">\(\mu_t\)</span> which is subject to random changes over time. The local level model is given by:</p>
-<p><span class="math display">\[
+<span class="math display">\[\begin{aligned}
 y_t = \mu_t + v_t, \quad v_t \sim N(0, V) \\
 \mu_t = \mu_{t-1} + w_t, \quad w_t \sim N(0, W)
-\]</span></p>
+\end{aligned}\]</span>
 <p>The local linear trend model additionally expects the level <span class="math inline">\(\mu_t\)</span> to evolve with a slope of <span class="math inline">\(\beta_t\)</span>. The local linear trend model is defined as:</p>
-<p><span class="math display">\[
+<span class="math display">\[\begin{aligned}
 y_t = \mu_t + v_t, \quad v_t \sim N(0, V) \\
 \mu_t = \mu_{t-1} + \beta_{t-1} + w_{t,1}, \quad w_{t,1} \sim N(0, \sigma^2_\mu) \\
 \beta_t = \beta_{t-1} + w_{t,2}, \quad w_{t,1} \sim N(0, \sigma^2_\beta)
-\]</span> We will use the <a href="https://cran.r-project.org/web/packages/dlm/index.html">dlm</a> package to fit the models, the package provide model design function <code>dlmModPoly</code> for defining polynomial DLMs. We start by estimating the parameters of the models using maximum likelihood (see <code>vignette("dlm")</code> for an introduction of the package explanation of estimation using dlmMLE).</p>
+\end{aligned}\]</span>
+<p>We will use the <a href="https://cran.r-project.org/web/packages/dlm/index.html">dlm</a> package to fit the models, the package provide model design function <code>dlmModPoly</code> for defining polynomial DLMs. We start by estimating the parameters of the models using maximum likelihood (see <code>vignette("dlm")</code> for an introduction of the package explanation of estimation using dlmMLE).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>buildFun1 <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">dlmModPoly</span>(<span class="dv">1</span>, <span class="at">dV =</span> <span class="fu">exp</span>(x[<span class="dv">1</span>]), <span class="at">dW =</span> <span class="fu">exp</span>(x[<span class="dv">2</span>]))</span>

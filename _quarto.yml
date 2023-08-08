@@ -1,6 +1,11 @@
 project:
   type: website
   output-dir: docs
+  render:
+    - "*.qmd"
+    - "*.rmd"
+    - "*.Rmd"
+    - "!Readme.md"
 
 website:
   title: "Quantification of Resilience Farm Animals"
@@ -32,6 +37,7 @@ format:
     theme: flatly
     css: styles.css
     toc: true
+    html-math-method: mathjax
 
 
 

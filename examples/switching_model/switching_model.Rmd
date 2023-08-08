@@ -18,18 +18,20 @@ plot(y)
 
 We model the unperturbed state using a local level model (1st order polynomial) and the perturbed state using a local linear trend model (2nd order polynomial). In the local level model observations are modeled as having mean $\mu_t$ which is subject to random changes over time. The local level model is given by:
 
-$$
+\begin{aligned}
 y_t = \mu_t + v_t, \quad v_t \sim N(0, V) \\
 \mu_t = \mu_{t-1} + w_t, \quad w_t \sim N(0, W)
-$$
+\end{aligned}
 
 The local linear trend model additionally expects the level $\mu_t$ to evolve with a slope of $\beta_t$. The local linear trend model is defined as:
 
-$$
+\begin{aligned}
 y_t = \mu_t + v_t, \quad v_t \sim N(0, V) \\
 \mu_t = \mu_{t-1} + \beta_{t-1} + w_{t,1}, \quad w_{t,1} \sim N(0, \sigma^2_\mu) \\
 \beta_t = \beta_{t-1} + w_{t,2}, \quad w_{t,1} \sim N(0, \sigma^2_\beta)
-$$ We will use the [dlm](https://cran.r-project.org/web/packages/dlm/index.html) package to fit the models, the package provide model design function `dlmModPoly` for defining polynomial DLMs. We start by estimating the parameters of the models using maximum likelihood (see `vignette("dlm")` for an introduction of the package explanation of estimation using dlmMLE).
+\end{aligned}
+
+We will use the [dlm](https://cran.r-project.org/web/packages/dlm/index.html) package to fit the models, the package provide model design function `dlmModPoly` for defining polynomial DLMs. We start by estimating the parameters of the models using maximum likelihood (see `vignette("dlm")` for an introduction of the package explanation of estimation using dlmMLE).
 
 ```{r}
 buildFun1 <- function(x) {
